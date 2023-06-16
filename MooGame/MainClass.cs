@@ -4,7 +4,7 @@ using System.Collections.Generic;
 
 namespace MooGame;
 
-internal class MainClass
+internal class Program
 {
     static void Main(string[] args)
     {
@@ -14,29 +14,29 @@ internal class MainClass
 
         while (playOn)
         {
-            string goal = makeGoal();
+            string goal = GenerateGoal();
 
 
             Console.WriteLine("New game:\n");
             //comment out or remove next line to play real games!
-            Console.WriteLine("For practice, number is: " + goal + "\n");
+            //Console.WriteLine("For practice, number is: " + goal + "\n");
             string guess = Console.ReadLine();
 
             int nGuess = 1;
-            string bbcc = checkBC(goal, guess);
+            string bbcc = CheckBC(goal, guess);
             Console.WriteLine(bbcc + "\n");
             while (bbcc != "BBBB,")
             {
                 nGuess++;
                 guess = Console.ReadLine();
                 Console.WriteLine(guess + "\n");
-                bbcc = checkBC(goal, guess);
+                bbcc = CheckBC(goal, guess);
                 Console.WriteLine(bbcc + "\n");
             }
             StreamWriter output = new StreamWriter("result.txt", append: true);
             output.WriteLine(name + "#&#" + nGuess);
             output.Close();
-            showTopList();
+            ShowTopList();
             Console.WriteLine("Correct, it took " + nGuess + " guesses\nContinue?");
             string answer = Console.ReadLine();
             if (answer != null && answer != "" && answer.Substring(0, 1) == "n")
@@ -46,7 +46,7 @@ internal class MainClass
         }
     }
 
-    static string makeGoal()
+    static string GenerateGoal()
     {
         Random randomGenerator = new Random();
         string goal = "";
@@ -64,7 +64,7 @@ internal class MainClass
         return goal;
     }
 
-    static string checkBC(string goal, string guess)
+    static string CheckBC(string goal, string guess)
     {
         int cows = 0, bulls = 0;
         guess += "    ";     // if player entered less than 4 chars
@@ -89,7 +89,7 @@ internal class MainClass
     }
 
 
-    static void showTopList()
+    static void ShowTopList()
     {
         StreamReader input = new StreamReader("result.txt");
         List<PlayerData> results = new List<PlayerData>();
@@ -112,11 +112,11 @@ internal class MainClass
 
 
         }
-        results.Sort((p1, p2) => p1.Average().CompareTo(p2.Average()));
+        results.Sort((p1, p2) => p1.GetAverage().CompareTo(p2.GetAverage()));
         Console.WriteLine("Player   games average");
         foreach (PlayerData p in results)
         {
-            Console.WriteLine(string.Format("{0,-9}{1,5:D}{2,9:F2}", p.Name, p.NGames, p.Average()));
+            Console.WriteLine(string.Format("{0,-9}{1,5:D}{2,9:F2}", p.Name, p.NGames, p.GetAverage()));
         }
         input.Close();
     }
@@ -142,7 +142,7 @@ class PlayerData
         NGames++;
     }
 
-    public double Average()
+    public double GetAverage()
     {
         return (double)totalGuess / NGames;
     }
