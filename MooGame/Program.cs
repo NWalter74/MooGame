@@ -19,7 +19,7 @@ internal class Program
 
             Console.WriteLine("New game:\n");
             //comment out or remove next line to play real games!
-            //Console.WriteLine("For practice, number is: " + goal + "\n");
+            Console.WriteLine("For practice, number is: " + goal + "\n");
             string guess = Console.ReadLine();
 
             int nGuess = 1;
@@ -33,9 +33,7 @@ internal class Program
                 bbcc = CheckBC(goal, guess);
                 Console.WriteLine(bbcc + "\n");
             }
-            StreamWriter output = new StreamWriter("result.txt", append: true);
-            output.WriteLine(name + "#&#" + nGuess);
-            output.Close();
+            SavePlayerData(name, nGuess);
             ShowTopList();
             Console.WriteLine("Correct, it took " + nGuess + " guesses\nContinue?");
             string answer = Console.ReadLine();
@@ -88,6 +86,12 @@ internal class Program
         return "BBBB".Substring(0, bulls) + "," + "CCCC".Substring(0, cows);
     }
 
+    static void SavePlayerData(string name, int nGuess)
+    {
+        StreamWriter output = new StreamWriter("result.txt", append: true);
+        output.WriteLine(name + "#&#" + nGuess);
+        output.Close();
+    }
 
     static void ShowTopList()
     {
