@@ -29,25 +29,32 @@ public class StatisticsCollector : IStatisticsCollector
     {
         List<PlayerData> results = new List<PlayerData>();
 
-        using (StreamReader input = new StreamReader("result.txt"))
+        try
         {
-            string line;
-            while ((line = input.ReadLine()) != null)
+            using (StreamReader input = new StreamReader("result.txt"))
             {
-                string[] nameAndScore = line.Split(new string[] { "#&#" }, StringSplitOptions.None);
-                string name = nameAndScore[0];
-                int guesses = Convert.ToInt32(nameAndScore[1]);
-                PlayerData pd = new PlayerData(name, guesses);
-                int pos = results.IndexOf(pd);
-                if (pos < 0)
+                string line;
+                while ((line = input.ReadLine()) != null)
                 {
-                    results.Add(pd);
-                }
-                else
-                {
-                    results[pos].Update(guesses);
+                    string[] nameAndScore = line.Split(new string[] { "#&#" }, StringSplitOptions.None);
+                    string name = nameAndScore[0];
+                    int guesses = Convert.ToInt32(nameAndScore[1]);
+                    PlayerData pd = new PlayerData(name, guesses);
+                    int pos = results.IndexOf(pd);
+                    if (pos < 0)
+                    {
+                        results.Add(pd);
+                    }
+                    else
+                    {
+                        results[pos].Update(guesses);
+                    }
                 }
             }
+        }
+        catch (IOException ex)
+        {
+            Console.WriteLine("An error occurred while loading player data: " + ex.Message);
         }
 
         return results;

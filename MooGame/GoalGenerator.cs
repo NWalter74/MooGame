@@ -9,6 +9,10 @@ public class GoalGenerator
         randomGenerator = new Random();
     }
 
+    /// <summary>
+    /// Generates a random 4-digit goal number.
+    /// </summary>
+    /// <returns>The generated goal number.</returns>
     public string GenerateGoal()
     {
         string goal = "";
