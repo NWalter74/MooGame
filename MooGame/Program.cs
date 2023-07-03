@@ -5,8 +5,8 @@ internal class Program
     static void Main(string[] args)
     {
         IUserInterface userInterface = new ConsoleUserInterface();
-        IGame game = new MooGame();
-        IStatisticsCollector statisticsCollector = new StatisticsCollector();
+        IGame game = new MooGame(new GoalGenerator(), new BullsAndCowsChecker());
+        IStatisticsCollector statisticsCollector = StatisticsCollector.GetInstance();
 
         Program program = new Program(userInterface, game, statisticsCollector);
         program.Run();

@@ -2,6 +2,15 @@
 
 public class MooGame : IGame
 {
+    private GoalGenerator goalGenerator;
+    private BullsAndCowsChecker bullsAndCowsChecker;
+
+    public MooGame(GoalGenerator goalGenerator, BullsAndCowsChecker bullsAndCowsChecker)
+    {
+        this.goalGenerator = goalGenerator;
+        this.bullsAndCowsChecker = bullsAndCowsChecker;
+    }
+
     public string GenerateGoal()
     {
         Random randomGenerator = new Random();

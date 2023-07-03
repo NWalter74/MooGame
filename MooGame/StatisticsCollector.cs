@@ -2,6 +2,21 @@
 
 public class StatisticsCollector : IStatisticsCollector
 {
+    private static StatisticsCollector instance;
+
+    private StatisticsCollector()
+    {
+    }
+
+    public static StatisticsCollector GetInstance()
+    {
+        if(instance == null)
+        {
+            instance = new StatisticsCollector();
+        }
+        return instance;
+    }
+
     public void SavePlayerData(string name, int nGuess)
     {
         using (StreamWriter output = new StreamWriter("result.txt", append: true))
