@@ -9,7 +9,7 @@ public class PlayerData
 
     public PlayerData(string name, int guesses)
     {
-        this.Name = name;
+        Name = name;
         NGames = 1;
         totalGuess = guesses;
     }
@@ -25,7 +25,7 @@ public class PlayerData
         return (double)totalGuess / NGames;
     }
 
-    public override bool Equals(Object p)
+    public override bool Equals(object p)
     {
         return Name.Equals(((PlayerData)p).Name);
     }

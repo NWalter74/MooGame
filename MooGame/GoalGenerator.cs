@@ -16,13 +16,13 @@ public class GoalGenerator
     public string GenerateGoal()
     {
         string goal = "";
-        for (int i=0; i<4; i++)
+        for (int i = 0; i < 4; i++)
         {
             int random = randomGenerator.Next(10);
             string randomDigit = "" + random;
             while (goal.Contains(randomDigit))
             {
-                random= randomGenerator.Next(10);
+                random = randomGenerator.Next(10);
                 randomDigit = "" + random;
             }
             goal = goal + randomDigit;
