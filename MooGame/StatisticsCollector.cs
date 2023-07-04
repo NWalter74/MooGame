@@ -10,7 +10,7 @@ public class StatisticsCollector : IStatisticsCollector
 
     public static StatisticsCollector GetInstance()
     {
-        if(instance == null)
+        if (instance == null)
         {
             instance = new StatisticsCollector();
         }
