@@ -10,7 +10,17 @@ internal class ConsoleUserInterface : IUserInterface
 
     public string GetGuess()
     {
-        return Console.ReadLine();
+        Console.WriteLine("Enter your guess (4-digit number):");
+        string input = Console.ReadLine();
+
+        // Check if the input is a 4-digit number
+        while (!IsValidGuess(input))
+        {
+            Console.WriteLine("Invalid input. Please enter a 4-digit number:");
+            input = Console.ReadLine();
+        }
+
+        return input;
     }
 
     public bool ShouldExit(string answer)
@@ -21,5 +31,19 @@ internal class ConsoleUserInterface : IUserInterface
     public void ShowMessage(string message)
     {
         Console.WriteLine(message);
+    }
+
+    private bool IsValidGuess(string input)
+    {
+        if (input.Length != 4)
+            return false;
+
+        foreach (char c in input)
+        {
+            if (!char.IsDigit(c))
+                return false;
+        }
+
+        return true;
     }
 }

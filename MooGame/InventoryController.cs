@@ -1,4 +1,6 @@
-﻿namespace MooGame;
+﻿using System.Diagnostics.Metrics;
+
+namespace MooGame;
 
 internal class InventoryController
 {
@@ -20,7 +22,7 @@ internal class InventoryController
 
         while (playOn)
         {
-            string goal = game.GenerateGoal();  //springt nach MooGame
+            string goal = game.GenerateGoal();
 
             userInterface.ShowMessage("New game:");
 
@@ -36,7 +38,6 @@ internal class InventoryController
             {
                 nGuess++;
                 guess = userInterface.GetGuess();
-                userInterface.ShowMessage(guess);
                 bbcc = game.CheckBC(goal, guess);
                 userInterface.ShowMessage(bbcc);
             }
@@ -45,9 +46,12 @@ internal class InventoryController
             List<PlayerData> results = statisticsCollector.LoadPlayerData();
             statisticsCollector.ShowTopList(results);
 
-            Console.WriteLine("Correct, it took " + nGuess + " guesses\nContinue?");
+            Console.WriteLine("Congratulations! You guessed the number in " + nGuess + " attempts.");
 
-            string answer = userInterface.GetGuess();
+            Console.WriteLine("Continue? (Type 'y' to continue or 'n' to exit)");
+
+            string answer = Console.ReadLine();
+            //string answer = userInterface.GetGuess();
             if (userInterface.ShouldExit(answer))
             {
                 playOn = false;
