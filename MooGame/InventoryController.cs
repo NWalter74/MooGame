@@ -20,7 +20,7 @@ internal class InventoryController
 
         while (playOn)
         {
-            string goal = game.GenerateGoal();
+            string goal = game.GenerateGoal();  //springt nach MooGame
 
             userInterface.ShowMessage("New game:");
 
