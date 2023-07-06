@@ -2,7 +2,7 @@
 
 namespace MooGame;
 
-internal class InventoryController
+public class InventoryController
 {
     private readonly IUserInterface userInterface;
     private readonly IGame game;
