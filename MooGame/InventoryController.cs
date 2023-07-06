@@ -2,7 +2,7 @@
 
 namespace MooGame;
 
-internal class InventoryController
+public class InventoryController
 {
     private readonly IUserInterface userInterface;
     private readonly IGame game;
@@ -51,7 +51,6 @@ internal class InventoryController
             Console.WriteLine("Continue? (Type 'y' to continue or 'n' to exit)");
 
             string answer = Console.ReadLine();
-            //string answer = userInterface.GetGuess();
             if (userInterface.ShouldExit(answer))
             {
                 playOn = false;
