@@ -51,6 +51,7 @@ public class InventoryController
             Console.WriteLine("Continue? (Type 'y' to continue or 'n' to exit)");
 
             string answer = Console.ReadLine();
+
             if (userInterface.ShouldExit(answer))
             {
                 playOn = false;
