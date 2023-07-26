@@ -13,7 +13,6 @@ internal class ConsoleUserInterface : IUserInterface
         Console.WriteLine("Enter your guess (4-digit number):");
         string input = Console.ReadLine();
 
-        // Check if the input is a 4-digit number
         while (!IsValidGuess(input))
         {
             Console.WriteLine("Invalid input. Please enter a 4-digit number:");

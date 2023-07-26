@@ -19,36 +19,32 @@ public class StatisticsCollector : IStatisticsCollector
 
     public void SavePlayerData(string name, int nGuess)
     {
-        using (StreamWriter output = new StreamWriter("result.txt", append: true))
-        {
-            output.WriteLine(name + "#&#" + nGuess);
-        }
+        using StreamWriter output = new("result.txt", append: true);
+        output.WriteLine(name + "#&#" + nGuess);
     }
 
     public List<PlayerData> LoadPlayerData()
     {
-        List<PlayerData> results = new List<PlayerData>();
+        List<PlayerData> results = new();
 
         try
         {
-            using (StreamReader input = new StreamReader("result.txt"))
+            using StreamReader input = new("result.txt");
+            string line;
+            while ((line = input.ReadLine()) != null)
             {
-                string line;
-                while ((line = input.ReadLine()) != null)
+                string[] nameAndScore = line.Split(new string[] { "#&#" }, StringSplitOptions.None);
+                string name = nameAndScore[0];
+                int guesses = Convert.ToInt32(nameAndScore[1]);
+                PlayerData pd = new(name, guesses);
+                int pos = results.IndexOf(pd);
+                if (pos < 0)
                 {
-                    string[] nameAndScore = line.Split(new string[] { "#&#" }, StringSplitOptions.None);
-                    string name = nameAndScore[0];
-                    int guesses = Convert.ToInt32(nameAndScore[1]);
-                    PlayerData pd = new PlayerData(name, guesses);
-                    int pos = results.IndexOf(pd);
-                    if (pos < 0)
-                    {
-                        results.Add(pd);
-                    }
-                    else
-                    {
-                        results[pos].Update(guesses);
-                    }
+                    results.Add(pd);
+                }
+                else
+                {
+                    results[pos].Update(guesses);
                 }
             }
         }
