@@ -14,10 +14,11 @@ internal class Program
         bool playOn = true;
         while (playOn)
         {
-            Console.WriteLine("Select a game:");
+            Console.WriteLine("\nSelect a game:");
             Console.WriteLine("1. Moo Game");
             Console.WriteLine("2. Mastermind Game");
             Console.WriteLine("3. Exit");
+            Console.WriteLine();
 
             string choice = Console.ReadLine();
 

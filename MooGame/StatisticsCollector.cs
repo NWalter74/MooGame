@@ -50,7 +50,7 @@ public class StatisticsCollector : IStatisticsCollector
         }
         catch (IOException ex)
         {
-            Console.WriteLine("An error occurred while loading player data: " + ex.Message);
+            Console.WriteLine("\nAn error occurred while loading player data: " + ex.Message);
         }
 
         return results;
@@ -59,7 +59,8 @@ public class StatisticsCollector : IStatisticsCollector
     public void ShowTopList(List<PlayerData> results)
     {
         results.Sort((p1, p2) => p1.GetAverage().CompareTo(p2.GetAverage()));
-        Console.WriteLine("Player   games average");
+        Console.WriteLine("\nPlayer   games     average");
+        Console.WriteLine("--------------------------");
         foreach (PlayerData p in results)
         {
             Console.WriteLine(string.Format("{0,-9}{1,5:D}{2,9:F2}", p.Name, p.NGames, p.GetAverage()));

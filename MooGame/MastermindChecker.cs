@@ -18,11 +18,11 @@ public class MastermindChecker
             }
         }
 
-        return $"({correctPositions}) Correct Positions, ({correctColors}) Correct Colors";
+        return $"\n({correctPositions}) Correct Positions, ({correctColors}) Correct Colors";
     }
 
     public bool IsCorrectGuess(string result)
     {
-        return result == "(4) Correct Positions, (0) Correct Colors";
+        return result == "\n(4) Correct Positions, (0) Correct Colors";
     }
 }

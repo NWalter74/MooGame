@@ -4,18 +4,18 @@ internal class ConsoleUserInterface : IUserInterface
 {
     public string GetUserName()
     {
-        Console.WriteLine("Enter your user name:");
+        Console.Write("Enter your user name: ");
         return Console.ReadLine();
     }
 
     public string GetGuess()
     {
-        Console.WriteLine("Enter your guess (4-digit number):");
+        Console.Write("\nEnter your guess (4-digit number): ");
         string input = Console.ReadLine();
 
         while (!IsValidGuess(input))
         {
-            Console.WriteLine("Invalid input. Please enter a 4-digit number:");
+            Console.Write("Invalid input. Please enter a 4-digit number: ");
             input = Console.ReadLine();
         }
 
