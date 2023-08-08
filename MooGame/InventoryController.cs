@@ -5,8 +5,14 @@ namespace MooGame;
 public class InventoryController
 {
     private readonly IUserInterface userInterface;
-    private readonly IGame game;
+    private IGame game;
     private readonly IStatisticsCollector statisticsCollector;
+
+    public IGame Game
+    {
+        get { return game; }
+        set { game = value; }
+    }
 
     public InventoryController(IUserInterface userInterface, IGame game, IStatisticsCollector statisticsCollector)
     {
@@ -26,20 +32,19 @@ public class InventoryController
 
             userInterface.ShowMessage("New game:");
 
-            // Comment out or remove the next line to play real games!
             userInterface.ShowMessage("For practice, number is: " + goal);
 
             string guess = userInterface.GetGuess();
             int nGuess = 1;
-            string bbcc = game.CheckBC(goal, guess);
-            userInterface.ShowMessage(bbcc);
+            string result = game.CheckBC(goal, guess);
+            userInterface.ShowMessage(result);
 
-            while (!game.IsCorrectGuess(bbcc))
+            while (!game.IsCorrectGuess(result))
             {
                 nGuess++;
                 guess = userInterface.GetGuess();
-                bbcc = game.CheckBC(goal, guess);
-                userInterface.ShowMessage(bbcc);
+                result = game.CheckBC(goal, guess);
+                userInterface.ShowMessage(result);
             }
 
             statisticsCollector.SavePlayerData(name, nGuess);
