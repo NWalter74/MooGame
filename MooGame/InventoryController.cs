@@ -30,9 +30,9 @@ public class InventoryController
         {
             string goal = game.GenerateGoal();
 
-            userInterface.ShowMessage("New game:");
+            userInterface.ShowMessage("\n                          New game:\n" + "                          ---------\n");
 
-            userInterface.ShowMessage("For practice, number is: " + goal);
+            userInterface.ShowMessage("For practice, number is: " + goal + "\n");
 
             string guess = userInterface.GetGuess();
             int nGuess = 1;
@@ -51,9 +51,9 @@ public class InventoryController
             List<PlayerData> results = statisticsCollector.LoadPlayerData();
             statisticsCollector.ShowTopList(results);
 
-            Console.WriteLine("Congratulations! You guessed the number in " + nGuess + " attempts.");
+            Console.WriteLine("\nCongratulations! You guessed the number in " + nGuess + " attempts.\n");
 
-            Console.WriteLine("Continue? (Type 'y' to continue or 'n' to exit)");
+            Console.Write("Continue? (Type 'y' to continue or 'n' to exit): ");
 
             string answer = Console.ReadLine();
 
